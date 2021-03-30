@@ -110,19 +110,19 @@ eDirection dir;
         // make tail and coordinate tail
         int prevX = tailX[0];
         int prevY = tailY[0];
-        int prev2X, prev2Y;
+        int tX, tY;
         tailX[0] = x;
         tailY[0] = y;
 
-        for(int i = 0; i < nTail; i++){
-            prev2X = tailX[i];
-            prev2Y = tailY[i];
+        for(int i = 1; i < nTail; i++){
+            tX = tailX[i];
+            tY = tailY[i];
 
             tailX[i] = prevX;
             tailY[i] = prevY;
 
-            prevX = prev2X;
-            prevY = prev2Y;
+            prevX = tX;
+            prevY = tY;
         }
 
         switch(dir){
