@@ -1,7 +1,9 @@
 #include <iostream>
 #include <conio.h>
+#include <vector>
 #include <windows.h>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 bool gameOver;
@@ -28,7 +30,7 @@ eDirection dir;
     }
 
     //draw the map
-    void draw(){
+    void gotoxy(int x, int y){
         system("cls");
 
         for(int i = 0; i < width+2; i++)
@@ -38,18 +40,18 @@ eDirection dir;
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 if (j == 0){
-                    std::cout << "|";
+                    cout << "|";
                 }
                 if(i == y && j == x){
-                    std::cout << "O";
+                    cout << "O";
                 
                 } else if (i == fruitY && j == fruitX) {
-                    std::cout << "F";
+                    cout << "F";
                 } else {
                     bool segment = false;
                     for(int l = 0; l < nTail; l++){
                         if (tailX[l] == j && tailY[l] == i){
-                            std::cout << "o";
+                            cout << "o";
                             segment = true;
                         };
                     }
@@ -60,19 +62,20 @@ eDirection dir;
 
                 }
                 if(j == width-1) {
-                    std::cout << "|";
+                    cout << "|";
                 }
 
             }
-            std::cout << endl;
+            cout << endl;
         }
 
-        for(int i = 0; i < width+2; i++)
+        for(int i = 0; i < width+2; i++){
             cout << "#";
-        std::cout << endl;
+        }
+        cout << endl;
 
         //display score
-        std::cout << " Score: " << score << endl;
+        cout << " Score: " << score << endl;
 
     }
 
@@ -189,7 +192,7 @@ eDirection dir;
         setup();
 
         while(!gameOver){
-            draw();
+            gotoxy(x, y);
             movement();
             movementUpdate();
             //sleep(10);
